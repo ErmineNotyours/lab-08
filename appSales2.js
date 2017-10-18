@@ -6,6 +6,10 @@ var storeName = ['First and Pike','SeaTac Airport', 'Seattle Center', 'Capitol H
 var minCustPerHourArr = [23, 3, 11, 20, 2];
 var maxCustPerHourArr = [65, 24, 38, 38, 16];
 var avgCookeSoldPerHourArr = [6.3, 1.2, 3.7, 2.3, 4.6];
+var yTotal = [];
+for (var i = 0; i < hours.length; i++) {
+  yTotal.push(0);
+}
 
 // get the reference for the body
 var body = document.getElementsByTagName('body')[0];
@@ -49,10 +53,11 @@ function Store (name, minCustPerHour, maxCustPerHour, avgCookeSoldPerHour, calcR
       var salesTd = document.createElement('td');
       salesTd.textContent = this.cookiesSoldByHour[k];
       xTotal = xTotal + this.cookiesSoldByHour[k];
+      yTotal[k] = yTotal[k] + this.cookiesSoldByHour[k];
       row.appendChild(salesTd);
     }
-    //Attempting to add row total here
-    var salesTd = document.createElement('td');
+    //Add row total here
+    var salesTd = document.createElement('th');
     salesTd.textContent = xTotal;
     row.appendChild(salesTd);
 
@@ -97,3 +102,25 @@ capitolHill.render();
 
 var alKi = new Store('Alki', 2, 16, 4.6);
 alKi.render();
+
+//Column total row here
+var grandTotal = 0;
+var tblBody = document.getElementById('t');
+var row = document.createElement('tr');
+
+var emptyH = document.createElement('th');
+row.appendChild(emptyH);
+for(var l = 0; l < hours.length; l++){
+  var tdEl = document.createElement('th');
+  console.log('l, yTotal[l]', l, yTotal[l]);
+  grandTotal = grandTotal + yTotal[l];
+  tdEl.textContent = yTotal[l];
+  row.appendChild(tdEl);
+  //console.log('hoursTd', hoursTd);
+}
+var tdEl = document.createElement('th');
+tdEl.textContent = grandTotal;
+row.appendChild(tdEl);
+
+tblBody.appendChild(row);
+console.log('row = ', row);
