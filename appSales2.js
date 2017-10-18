@@ -89,6 +89,7 @@ for (var loc = 0; loc < storeName.length; loc++){
   calcStore.render();
 }
 
+// old constructor function calls
 // var firstAndPike = new Store('First and Pike', 23, 65, 6.3);
 // firstAndPike.render();
 //
@@ -125,3 +126,21 @@ row.appendChild(tdEl);
 
 tblBody.appendChild(row);
 console.log('row = ', row);
+
+//Forms!
+var addStore = document.getElementById('add-store');
+
+function handleNewStoreSubmit(event){
+
+  event.preventDefault();
+  if (!event.target.storename.value || event.target.mincust.value || event.target.maxcust.value || event.target.avgcook.value){
+    return alert('Cat got your tounge?  Fields can not be left empty.');
+  }
+  var newStore = new Store(event.target.storename.value, parseInt(event.target.mincust.value), parseInt(event.target.maxcust.value), parseInt(event.target.avgcook.value));
+  newStore.render();
+
+  event.target.storename.value = null;
+  event.target.mincust.value = null;
+  event.target.maxcust.value = null;
+  event.target.avgcook.value = null;
+}
