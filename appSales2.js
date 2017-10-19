@@ -83,12 +83,14 @@ tblBody.appendChild(row);
 console.log('row = ', row);
 
 //New code for accessing object by arrays. Needed for flexibility for adding stores by form
-for (var loc = 0; loc < storeName.length; loc++){
-  console.log('In the for location loop, location ', location);
-  var calcStore = new Store(storeName[loc], minCustPerHourArr[loc], maxCustPerHourArr[loc], avgCookeSoldPerHourArr[loc]);
-  calcStore.render();
+function updateStore(){
+  for (var loc = 0; loc < storeName.length; loc++){
+    console.log('In the for location loop, location ', location);
+    var calcStore = new Store(storeName[loc], minCustPerHourArr[loc], maxCustPerHourArr[loc], avgCookeSoldPerHourArr[loc]);
+    calcStore.render();
+  }
 }
-
+updateStore();
 // old constructor function calls
 // var firstAndPike = new Store('First and Pike', 23, 65, 6.3);
 // firstAndPike.render();
@@ -136,11 +138,16 @@ function handleNewStoreSubmit(event){
   if (!event.target.storename.value || event.target.mincust.value || event.target.maxcust.value || event.target.avgcook.value){
     return alert('Cat got your tounge?  Fields can not be left empty.');
   }
-  var newStore = new Store(event.target.storename.value, parseInt(event.target.mincust.value), parseInt(event.target.maxcust.value), parseInt(event.target.avgcook.value));
-  newStore.render();
+
+  storeName.push(event.target.storename.value);
+  minCustPerHourArr.push(parseInt(event.target.mincust.value)); maxCustPerHourArr.push(parseInt(event.target.maxcust.value)); avgCookeSoldPerHourArr.push(parseInt(event.target.avgcook.value));
+  updateStore();
 
   event.target.storename.value = null;
   event.target.mincust.value = null;
   event.target.maxcust.value = null;
   event.target.avgcook.value = null;
+
 }
+
+chatForm.addEventListener('submit', handleNewStoreSubmit);
