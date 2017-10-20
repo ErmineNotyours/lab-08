@@ -134,14 +134,15 @@ var addStore = document.getElementById('add-store');
 
 function handleNewStoreSubmit(event){
 
-  event.preventDefault();
-  if (!event.target.storename.value || event.target.mincust.value || event.target.maxcust.value || event.target.avgcook.value){
+  if (!event.target.storename.value || !event.target.mincust.value || !event.target.maxcust.value || !event.target.avgcook.value){
     return alert('Cat got your tounge?  Fields can not be left empty.');
   }
 
   storeName.push(event.target.storename.value);
   minCustPerHourArr.push(parseInt(event.target.mincust.value)); maxCustPerHourArr.push(parseInt(event.target.maxcust.value)); avgCookeSoldPerHourArr.push(parseInt(event.target.avgcook.value));
   updateStore();
+
+  event.preventDefault();
 
   event.target.storename.value = null;
   event.target.mincust.value = null;
@@ -150,4 +151,15 @@ function handleNewStoreSubmit(event){
 
 }
 
-chatForm.addEventListener('submit', handleNewStoreSubmit);
+addStore.addEventListener('submit', handleNewStoreSubmit);
+
+// document.getElementById('createNewStore').addEventListener('click', function() {
+//   var newStoreName = document.getElementById('storename').value;
+//   var newStoreMin = document.getElementById('mincust').value;
+//   var newStoreMax = document.getElementById('maxcust').value;
+//   var newStoreAvg = document.getElementById('avgcook').value;
+//
+//   event.preventDefault(); //gotta have it. prevents page reload
+//
+//   new MakeLocation(newStoreName, newStoreMin, newStoreMax, newStoreAvg);
+// });
