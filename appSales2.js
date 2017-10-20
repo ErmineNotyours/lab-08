@@ -65,70 +65,71 @@ function Store (name, minCustPerHour, maxCustPerHour, avgCookeSoldPerHour, calcR
 
   };
 };
-
-//Write top row hour headers
-var tblBody = document.getElementById('t');
-var row = document.createElement('tr');
-
-var emptyH = document.createElement('th');
-row.appendChild(emptyH);
-for(var l = 0; l < hours.length; l++){
-  var tdEl = document.createElement('th');
-  console.log('l, hours[l]', l, hours[l]);
-  tdEl.textContent = hours[l];
-  row.appendChild(tdEl);
-  //console.log('hoursTd', hoursTd);
-}
-tblBody.appendChild(row);
-console.log('row = ', row);
-
-//New code for accessing object by arrays. Needed for flexibility for adding stores by form
 function updateStore(){
+//Write top row hour headers
+  var tblBody = document.getElementById('t');
+  var row = document.createElement('tr');
+
+  var emptyH = document.createElement('th');
+  row.appendChild(emptyH);
+  for(var l = 0; l < hours.length; l++){
+    var tdEl = document.createElement('th');
+    console.log('l, hours[l]', l, hours[l]);
+    tdEl.textContent = hours[l];
+    row.appendChild(tdEl);
+    //console.log('hoursTd', hoursTd);
+  }
+  tblBody.appendChild(row);
+  console.log('row = ', row);
+
+  //New code for accessing object by arrays. Needed for flexibility for adding stores by form
+
   for (var loc = 0; loc < storeName.length; loc++){
     console.log('In the for location loop, location ', location);
     var calcStore = new Store(storeName[loc], minCustPerHourArr[loc], maxCustPerHourArr[loc], avgCookeSoldPerHourArr[loc]);
     calcStore.render();
   }
+
+  // old constructor function calls
+  // var firstAndPike = new Store('First and Pike', 23, 65, 6.3);
+  // firstAndPike.render();
+  //
+  // var seaTacAirport = new Store('SeaTac Airport', 3, 24, 1.2);
+  // seaTacAirport.render();
+  //
+  // var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
+  // seattleCenter.render();
+  //
+  // var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
+  // capitolHill.render();
+  //
+  // var alKi = new Store('Alki', 2, 16, 4.6);
+  // alKi.render();
+
+  //Column total row here
+  var grandTotal = 0;
+  var tblBody = document.getElementById('t');
+  var row = document.createElement('tr');
+
+  var emptyH = document.createElement('th');
+  row.appendChild(emptyH);
+  for(var l = 0; l < hours.length; l++){
+    var tdEl = document.createElement('th');
+    console.log('l, yTotal[l]', l, yTotal[l]);
+    grandTotal = grandTotal + yTotal[l];
+    tdEl.textContent = yTotal[l];
+    row.appendChild(tdEl);
+    //console.log('hoursTd', hoursTd);
+  }
+
+  var tdEl = document.createElement('th');
+  tdEl.textContent = grandTotal;
+  row.appendChild(tdEl);
+
+  tblBody.appendChild(row);
+  console.log('row = ', row);
 }
 updateStore();
-// old constructor function calls
-// var firstAndPike = new Store('First and Pike', 23, 65, 6.3);
-// firstAndPike.render();
-//
-// var seaTacAirport = new Store('SeaTac Airport', 3, 24, 1.2);
-// seaTacAirport.render();
-//
-// var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
-// seattleCenter.render();
-//
-// var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
-// capitolHill.render();
-//
-// var alKi = new Store('Alki', 2, 16, 4.6);
-// alKi.render();
-
-//Column total row here
-var grandTotal = 0;
-var tblBody = document.getElementById('t');
-var row = document.createElement('tr');
-
-var emptyH = document.createElement('th');
-row.appendChild(emptyH);
-for(var l = 0; l < hours.length; l++){
-  var tdEl = document.createElement('th');
-  console.log('l, yTotal[l]', l, yTotal[l]);
-  grandTotal = grandTotal + yTotal[l];
-  tdEl.textContent = yTotal[l];
-  row.appendChild(tdEl);
-  //console.log('hoursTd', hoursTd);
-}
-var tdEl = document.createElement('th');
-tdEl.textContent = grandTotal;
-row.appendChild(tdEl);
-
-tblBody.appendChild(row);
-console.log('row = ', row);
-
 //Forms!
 var addStore = document.getElementById('add-store');
 
@@ -140,6 +141,13 @@ function handleNewStoreSubmit(event){
 
   storeName.push(event.target.storename.value);
   minCustPerHourArr.push(parseInt(event.target.mincust.value)); maxCustPerHourArr.push(parseInt(event.target.maxcust.value)); avgCookeSoldPerHourArr.push(parseInt(event.target.avgcook.value));
+
+  //This code is supposed to delete the table before drawing a new one, but instead a new table is created without the added store.  This console.log does not execute.
+  // var removeEl = document.getElementById('t');
+  // var containerEl = removeEl.parentNode;
+  // console.log('containerEl = ', containerEl);
+  // containerEl.removeChild(removeEl);
+
   updateStore();
 
   event.preventDefault();
@@ -148,18 +156,7 @@ function handleNewStoreSubmit(event){
   event.target.mincust.value = null;
   event.target.maxcust.value = null;
   event.target.avgcook.value = null;
-
+  console.log('At end of addStore, storeName = ', storeName);
 }
 
 addStore.addEventListener('submit', handleNewStoreSubmit);
-
-// document.getElementById('createNewStore').addEventListener('click', function() {
-//   var newStoreName = document.getElementById('storename').value;
-//   var newStoreMin = document.getElementById('mincust').value;
-//   var newStoreMax = document.getElementById('maxcust').value;
-//   var newStoreAvg = document.getElementById('avgcook').value;
-//
-//   event.preventDefault(); //gotta have it. prevents page reload
-//
-//   new MakeLocation(newStoreName, newStoreMin, newStoreMax, newStoreAvg);
-// });

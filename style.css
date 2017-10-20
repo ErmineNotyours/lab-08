@@ -1,0 +1,53 @@
+*{
+  font-family: Times;
+  background-color: #17AED4;
+  /*background-image: url( "images/salmon-bg.png");*/
+  color: black;
+}
+body{
+background-color: #17AED4;
+}
+h1, h2, h3{
+  font-family: 'Goblin One', cursive;
+}
+h1{
+  color: #E81B00;
+}
+h2{
+  color: #1EE816;
+  text-shadow: 1px 1px 0px #000000;
+}
+h3{
+  color: #FFFF2B;
+  text-shadow: 1px 1px 0px #000000;
+  background-color: #68C1E8
+}
+table{
+/*  height: 75%; */
+  border-collapse: collapse;
+  width: 50%;
+  padding: 3px;
+  margin: 10px;
+}
+
+td, th{
+  border-width: medium;
+  border-style: solid;
+  background-color: #68C1E8;
+  font-size: 18px;
+}
+td{
+  padding: 10;
+}
+#contact p{
+  font-family: Arial;
+}
+
+p{
+  font-size: 18px;
+}
+img{
+  -moz-box-shadow: 5px 5px #777777;
+  -webkit-box-shadow: 5px 5px #777777;
+  box-shadow: 5px 5px #777777;
+}
