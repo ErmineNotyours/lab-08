@@ -153,12 +153,12 @@ function handleNewStoreSubmit(event){
   calStore.render();
   columnTotal();
 
-  //This code is supposed to delete the table before drawing a new one, but instead a new table is created without the added store.  This console.log does not execute.
+  //This code is supposed to delete the table before drawing a new one, adapted from Duckett JS p 225.  In this code, containerEl is the table I want to remove, but when I use containerEl.removeChild(containerEl), the page resets and reloads. containerEl.removeChild(removeEl) removes the hours row
   console.log('About to delete table.');
-  var removeEl = document.getElementById('t');
+  var removeEl = document.getElementsByTagName('tr')[0];
   var containerEl = removeEl.parentNode;
   console.log('containerEl = ', containerEl);
-  // containerEl.removeChild(removeEl);
+  //containerEl.removeChild(removeEl);
 
   //updateStore();
 
