@@ -41,7 +41,11 @@ td{
 }
 #contact p{
   font-family: Arial;
+  background-color: #68C1E8;
 }
+/*a{
+  background-color: #68C1E8;
+}*/
 
 p{
   font-size: 18px;

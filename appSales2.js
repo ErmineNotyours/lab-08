@@ -82,29 +82,29 @@ function updateStore(){
   tblBody.appendChild(row);
   //console.log('row = ', row);
 
-  //New code for accessing object by arrays. Needed for flexibility for adding stores by form
+  //New code for accessing object by arrays. Needed for flexibility for adding stores by form and for changing store information
 
-  // for (var loc = 0; loc < storeName.length; loc++){
-  //   //console.log('In the for location loop, location ', location);
-  //   var calcStore = new Store(storeName[loc], minCustPerHourArr[loc], maxCustPerHourArr[loc], avgCookeSoldPerHourArr[loc]);
-  //   calcStore.render();
-  //}
+  for (var loc = 0; loc < storeName.length; loc++){
+    //console.log('In the for location loop, location ', location);
+    var calcStore = new Store(storeName[loc], minCustPerHourArr[loc], maxCustPerHourArr[loc], avgCookeSoldPerHourArr[loc]);
+    calcStore.render();
+  }
 
   // old constructor function calls
-  var firstAndPike = new Store('First and Pike', 23, 65, 6.3);
-  firstAndPike.render();
-
-  var seaTacAirport = new Store('SeaTac Airport', 3, 24, 1.2);
-  seaTacAirport.render();
-
-  var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
-  seattleCenter.render();
-
-  var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
-  capitolHill.render();
-
-  var alKi = new Store('Alki', 2, 16, 4.6);
-  alKi.render();
+  // var firstAndPike = new Store('First and Pike', 23, 65, 6.3);
+  // firstAndPike.render();
+  //
+  // var seaTacAirport = new Store('SeaTac Airport', 3, 24, 1.2);
+  // seaTacAirport.render();
+  //
+  // var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
+  // seattleCenter.render();
+  //
+  // var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
+  // capitolHill.render();
+  //
+  // var alKi = new Store('Alki', 2, 16, 4.6);
+  // alKi.render();
 }
 function columnTotal(){
 //Column total row here
