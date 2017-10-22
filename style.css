@@ -1,6 +1,6 @@
 *{
   font-family: Times;
-  /*background-color: #17AED4;*/
+  background-color: #17AED4;
   /*background-image: url( "images/salmon-bg.png");*/
   color: black;
 }
@@ -23,27 +23,35 @@ h3{
   background-color: #68C1E8
 }
 table{
+/*  height: 75%; */
   border-collapse: collapse;
   width: 50%;
   padding: 3px;
   margin: 10px;
 }
 
-table tr:nth-child(even){
-  background-color: #E2FFF7;
-}
 td, th{
-  border-width: thin;
+  border-width: medium;
   border-style: solid;
-  border-color: #C7C5BB;
-  text-align: center;
-/*  background-color: #68C1E8; */
+  background-color: #68C1E8;
+  font-size: 18px;
 }
 td{
   padding: 10;
 }
+#contact p{
+  font-family: Arial;
+  background-color: #68C1E8;
+}
+/*a{
+  background-color: #68C1E8;
+}*/
+
 p{
   font-size: 18px;
+}
+#itali{
+  font-style: italic;
 }
 img{
   -moz-box-shadow: 5px 5px #777777;
