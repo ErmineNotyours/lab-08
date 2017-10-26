@@ -55,7 +55,7 @@ function Store (name, minCustPerHour, maxCustPerHour, avgCookeSoldPerHour, calcR
       xTotal = xTotal + this.cookiesSoldByHour[k];
       yTotal[k] = yTotal[k] + this.cookiesSoldByHour[k];
       row.appendChild(salesTd);
-    }
+    };
     //Add row total here
     var salesTd = document.createElement('th');
     salesTd.textContent = xTotal;
@@ -73,6 +73,7 @@ function updateStore(){
   var emptyH = document.createElement('th');
   row.appendChild(emptyH);
   for(var l = 0; l < hours.length; l++){
+    // tdEl gets element th, not td.  Why?  Works the same either way.
     var tdEl = document.createElement('th');
     //console.log('l, hours[l]', l, hours[l]);
     tdEl.textContent = hours[l];
@@ -111,6 +112,7 @@ function columnTotal(){
   var grandTotal = 0;
   var tblBody = document.getElementById('t');
   var row = document.createElement('tr');
+  row.setAttribute('id', 'total'); // to mark total row for easy removal
 
   var emptyH = document.createElement('th');
   row.appendChild(emptyH);
@@ -154,11 +156,16 @@ function handleNewStoreSubmit(event){
   columnTotal();
 
   //This code is supposed to delete the table before drawing a new one, adapted from Duckett JS p 225.  In this code, containerEl is the table I want to remove, but when I use containerEl.removeChild(containerEl), the page resets and reloads. containerEl.removeChild(removeEl) removes the hours row
-  console.log('About to delete table.');
-  var removeEl = document.getElementsByTagName('tr')[0];
-  var containerEl = removeEl.parentNode;
-  console.log('containerEl = ', containerEl);
-  //containerEl.removeChild(removeEl);
+  // console.log('About to delete table.');
+  // var removeEl = document.getElementsByTagName('tr')[0];
+  // var containerEl = removeEl.parentNode;
+  // console.log('containerEl = ', containerEl);
+  // containerEl.removeChild(removeEl);
+
+  // This code is also supposed to delete the total row.
+  var elem = document.getElementById('total');
+  elem.parentElement.removeChild(elem);
+  // Thanks to the Lecture 10 code review for this code.
 
   //updateStore();
 
